@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy-Preserving FL MobileViT</title>
+  <link rel="stylesheet" href="app/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="brand"><span class="brand-icon">âŒ˜</span><div><h1>Privacy-Preserving FL MobileViT</h1><p>Diagnostic System for Pneumonia, Tuberculosis, and COVID-19 in Nigeria</p></div></div>
+    <div class="hero-stats">
+      <div class="stat"><span>â–¥</span><b>5<small>HOSPITALS</small></b></div>
+      <div class="stat"><span>â¬Ÿ</span><b>Local<small>DATA PRIVACY</small></b></div>
+      <div class="stat"><span>â–£</span><b>MobileViT<small>ARCHITECTURE</small></b></div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar panel">
+      <h2>â˜·&nbsp; System Configuration</h2>
+      <label>Participating Hospitals: <output id="hospitalCount">5</output></label>
+      <input id="hospitalSlider" type="range" min="3" max="5" value="5">
+      <label>X-Ray Data Distribution:</label>
+      <div class="field">Realistic Non-IID (Region-specific)</div>
+      <label>Federated Model:</label>
+      <div class="field">MobileViT (Lightweight Hybrid)</div>
+      <button id="trainBtn" class="primary">â–¶&nbsp; Initialize Training</button>
+      <button id="resetBtn" class="danger">â†»&nbsp; Reset Environment</button>
+      <h2 class="status-title">â—”&nbsp; Network Status</h2>
+      <div class="status"><span>Global Round:</span><b id="roundStatus">0/50</b></div>
+      <div class="status"><span>Active Nodes:</span><b id="nodesStatus">0/5</b></div>
+      <div class="status"><span>FedAvg Sync:</span><b id="syncStatus">Idle</b></div>
+    </aside>
+
+    <section class="content">
+      <section class="panel pipeline">
+        <div class="panel-title"><h2>â–¼&nbsp; Dataset Pre-processing Pipeline</h2><span class="pill purple">Nigeria Chest X-ray Dataset</span></div>
+        <div class="pipeline-row">
+          <div class="pipe-step"><i>â–£</i><b>Raw X-Rays</b><small>Local ingestion</small></div><em>â†’</em>
+          <div class="pipe-step"><i>âŒ—</i><b>Resizing</b><small>Standardized resolution</small></div><em>â†’</em>
+          <div class="pipe-step"><i>â—</i><b>Normalization</b><small>Intensity scaling</small></div><em>â†’</em>
+          <div class="pipe-step"><i>â—†</i><b>Augmentation</b><small>Enhanced robustness</small></div>
+        </div>
+      </section>
+
+      <section class="panel architecture">
+        <div class="panel-title"><h2>âš‘&nbsp; Federated Learning Architecture (FedAvg)</h2><span class="privacy">â–£ Raw Data Stays Local</span></div>
+        <div class="server"><div class="server-icon">â–¤</div><b>Central Aggregation Server</b><div class="model-card"><span>Global Model: <strong>MobileViT</strong></span><span>Algorithm: <b>FedAvg</b></span></div></div>
+        <div id="hospitals" class="hospitals"></div>
+      </section>
+
+      <div class="split">
+        <section class="panel distribution"><div class="panel-title"><h2>â—”&nbsp; Local Data Distribution</h2></div><div id="bars" class="bars"></div><div class="legend"><span class="normal">â— Normal</span><span class="pneumonia">â— Pneumonia</span><span class="tb">â— Tuberculosis</span><span class="covid">â— COVID-19</span></div></section>
+        <section class="panel terminal"><div class="panel-title"><h2>ã€‰_ Operation Terminal</h2></div><div id="terminalLog" class="terminal-log"></div></section>
+      </div>
+
+      <section class="panel diagnostics">
+        <div class="panel-title"><h2>â™¨&nbsp; Clinical Diagnostic Interface</h2><span id="modelBadge" class="pill locked">â–£ Awaiting Global Model</span></div>
+        <div id="lockedOverlay" class="locked-overlay"><div class="lock">â–£</div><h3>Inference Locked</h3><p>Initiate the Federated Learning process to collaboratively<br>train the MobileViT global model prior to clinical diagnostics.</p></div>
+        <div class="upload-row">
+          <label id="dropzone" class="dropzone"><input id="fileInput" type="file" accept="image/*"><span>â˜</span><b>Import Patient X-Ray</b><strong>Drag & Drop or Click to Browse</strong></label>
+          <div class="actions"><button id="diagnoseBtn" class="primary" disabled>ÏŸ&nbsp; Run Diagnostics</button><button id="clearBtn" class="secondary">Ã—&nbsp; Clear</button></div>
+        </div>
+        <div class="images"><div class="image-card"><h3>Input Image</h3><div class="image-box"><img id="preview" alt=""><span id="inputPlaceholder">No image selected</span></div></div><div class="image-card"><h3>MobileViT Attention Map</h3><div class="image-box attention"><canvas id="attentionCanvas"></canvas><span id="attentionPlaceholder">Awaiting computation</span></div></div></div>
+        <div id="result" class="result hidden"></div>
+      </section>
+    </section>
+  </main>
+  <script src="app/app.js"></script>
+</body>
+</html>
+
